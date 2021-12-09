@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "description": "管理后台脚手架",
   "scripts": {
-    "serve": "vite",
+    "dev": "vite",
     "build": "vite build",
     "preview": "vite preview",
     "prepare": "husky install",
