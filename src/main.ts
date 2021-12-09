@@ -1,12 +1,18 @@
-import { createApp } from "vue";
-import App from "./App.vue";
-import router from "/@/router";
-
 // 引入自定义样式
 import "/@/styles/index.scss";
 
-const app = createApp(App);
+import { createApp } from "vue";
+import App from "./App.vue";
+import router from "/@/router";
+import { setupStore } from "/@/store";
 
-app.use(router);
+function bootstrap() {
+  const app = createApp(App);
 
-app.mount("#app");
+  app.use(router);
+  setupStore(app);
+
+  app.mount("#app");
+}
+
+bootstrap();
