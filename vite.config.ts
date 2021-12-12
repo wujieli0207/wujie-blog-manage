@@ -1,6 +1,5 @@
 import { UserConfigExport, ConfigEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
-// import styleImport from "vite-plugin-style-import";
 import Components from "unplugin-vue-components/vite";
 import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
 
@@ -21,25 +20,16 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
       Components({
         resolvers: [ElementPlusResolver()],
       }),
-      // styleImport({
-      //   libs: [
-      //     // 按需加载 element-plus
-      //     {
-      //       libraryName: "element-plus",
-      //       esModule: true,
-      //       ensureStyleFile: true,
-      //       resolveStyle: (name: string) => {
-      //         return `element-plus/lib/theme-chalk/${name}.css`;
-      //       },
-      //       resolveComponent: (name: string) => {
-      //         return `element-plus/lib/${name}`;
-      //       },
-      //     },
-      //   ],
-      // }),
     ],
     resolve: {
       alias,
+    },
+    css: {
+      preprocessorOptions: {
+        scss: {
+          additionalData: '@import "/@/styles/variables.scss";',
+        },
+      },
     },
   };
 };
