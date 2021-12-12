@@ -8,22 +8,12 @@ const menuList = [
   },
   {
     icon: "ic:outline-article",
-    index: "2",
+    index: "/blog",
     title: "博客管理",
-    secondItem: [
-      {
-        index: "/blogList",
-        title: "博客列表",
-      },
-      {
-        index: "/blogEdit",
-        title: "博客编辑",
-      },
-    ],
   },
   {
     icon: "iconoir:profile-circled",
-    index: "/profile",
+    index: "/personalCenter",
     title: "个人中心",
   },
   {

@@ -2,9 +2,12 @@
   <div class="header">
     <div class="header_left">
       <!-- 折叠按钮 -->
-      <div class="header__left-collapse">
-        <Icon icon="line-md:menu-fold-left" />
-        <Icon icon="line-md:menu-fold-right" />
+      <div
+        class="header__left-collapse"
+        @click="appStore.handleCollapse(!appStore.sidebarCollapse)"
+      >
+        <Icon class="collapse" v-if="appStore.sidebarCollapse" icon="line-md:menu-fold-left" />
+        <Icon class="collapse" v-if="!appStore.sidebarCollapse" icon="line-md:menu-fold-right" />
       </div>
     </div>
     <div class="header__right">
@@ -26,22 +29,31 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue";
+  import { defineComponent, onMounted } from "vue";
   import { Icon } from "@iconify/vue";
   import useState from "./hooks/useState";
   import avatar from "/@/assets/images/avatar.jpg";
+  import { useAppStore } from "/@/store/modules/app";
   export default defineComponent({
     name: "LayoutHeader",
     components: {
       Icon,
     },
-    setup: (props, context) => {
-      const { isCollapse, userInfo } = useState();
+    setup: () => {
+      const { userInfo } = useState();
+      const appStore = useAppStore();
+
+      onMounted(() => {
+        // 屏幕宽度小于 1500 折叠侧边栏
+        if (document.body.clientWidth < 1500) {
+          appStore.handleCollapse(!appStore.handleCollapse);
+        }
+      });
 
       return {
         avatar,
-        isCollapse,
         userInfo,
+        appStore,
       };
     },
   });
@@ -58,6 +70,16 @@
     justify-content: space-between;
     height: 8vh;
     background-color: $--color-backbround;
+
+    .header__left-collapse {
+      display: flex;
+      align-items: center;
+
+      .collapse {
+        width: 4vw;
+        height: 4vh;
+      }
+    }
 
     .header__right-avator {
       display: flex;

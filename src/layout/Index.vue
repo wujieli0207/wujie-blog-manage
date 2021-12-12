@@ -5,14 +5,14 @@
     </div>
     <div class="layout__right">
       <layout-header />
-      <div class="content-box">
-        <div class="content">
-          <router-view>
-            <transition>
-              <keep-alive> component </keep-alive>
-            </transition>
-          </router-view>
-        </div>
+      <div class="content">
+        <router-view v-slot="{ Component }">
+          <transition name="move" mode="out-in">
+            <keep-alive>
+              <component :is="Component" />
+            </keep-alive>
+          </transition>
+        </router-view>
       </div>
     </div>
   </div>
