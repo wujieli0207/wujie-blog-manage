@@ -25,5 +25,7 @@ module.exports = {
   },
   rules: {
     "@typescript-eslint/ban-types": "off",
+    // 命名必须为多个单词
+    "vue/multi-word-component-names": "off",
   },
 };
