@@ -6,7 +6,7 @@
       <div class="sidebar__logo-name">博客管理后台</div>
     </div>
     <!-- 侧边菜单栏 -->
-    <el-menu>
+    <el-menu default-active="/home" router="true">
       <!-- 支持一级菜单栏 -->
       <template v-for="item in sidebarItems">
         <!-- 不包含二级菜单 -->
@@ -63,10 +63,11 @@
 </template>
 
 <script lang="ts">
-  import { defineComponent } from "vue";
+  import { defineComponent, onMounted } from "vue";
   import avatar from "/@/assets/images/avatar.jpg";
   import { Icon } from "@iconify/vue";
   import useState from "./hooks/useState";
+  import axios from "axios";
   export default defineComponent({
     name: "layoutSidebar",
     components: {
@@ -74,9 +75,23 @@
     },
     setup: (props, context) => {
       const { sidebarItems } = useState();
+
+      onMounted(() => {
+        loadSidebar();
+      });
+
+      /**
+       * @description 加载侧边菜单栏
+       */
+      const loadSidebar = (): void => {
+        axios.get("/api/menu/getMenuList").then((res) => {
+          sidebarItems.value = res.data.data.menuList;
+        });
+      };
       return {
         avatar,
         sidebarItems,
+        loadSidebar,
       };
     },
   });
