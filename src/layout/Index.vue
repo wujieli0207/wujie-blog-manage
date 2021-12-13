@@ -42,6 +42,10 @@
 
     .layout__right {
       width: 100%;
+
+      .content {
+        padding: 2vh;
+      }
     }
   }
 </style>

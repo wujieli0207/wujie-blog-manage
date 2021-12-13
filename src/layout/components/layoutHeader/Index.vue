@@ -6,8 +6,8 @@
         class="header__left-collapse"
         @click="appStore.handleCollapse(!appStore.sidebarCollapse)"
       >
-        <Icon class="collapse" v-if="appStore.sidebarCollapse" icon="line-md:menu-fold-left" />
-        <Icon class="collapse" v-if="!appStore.sidebarCollapse" icon="line-md:menu-fold-right" />
+        <Icon class="collapse" v-if="!appStore.sidebarCollapse" icon="line-md:menu-fold-left" />
+        <Icon class="collapse" v-if="appStore.sidebarCollapse" icon="line-md:menu-fold-right" />
       </div>
     </div>
     <div class="header__right">
@@ -76,8 +76,8 @@
       align-items: center;
 
       .collapse {
-        width: 4vw;
-        height: 4vh;
+        width: 1.2rem;
+        height: 1.2rem;
       }
     }
 

@@ -2,7 +2,7 @@ import { ref } from "vue";
 import { defineStore } from "pinia";
 
 export const useAppStore = defineStore("app", () => {
-  const sidebarCollapse = ref(true);
+  const sidebarCollapse = ref(false);
 
   const handleCollapse = (data: boolean): void => {
     sidebarCollapse.value = data;

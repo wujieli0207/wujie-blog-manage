@@ -5,4 +5,5 @@ export interface IBasicColumnProp {
   width: number; // 宽度
   align?: "left" | "center" | "right"; // 位置
   slot?: any; // 插槽
+  other?: any; // 其他配置
 }

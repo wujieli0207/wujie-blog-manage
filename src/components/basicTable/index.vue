@@ -10,7 +10,12 @@
     >
       <el-table-column v-if="allowSelect" type="selection" width="55"></el-table-column>
       <template v-for="item in columns">
-        <el-table-column v-if="item.slot" v-bind="item" :key="item.prop">
+        <el-table-column
+          v-if="item.slot"
+          v-bind="item"
+          :key="item.prop"
+          :show-overflow-tooltip="true"
+        >
           <template #header>
             <slot :name="item.slot.header">{{ item.label || "自定义header" }}</slot>
           </template>
@@ -20,7 +25,12 @@
             }}</slot>
           </template>
         </el-table-column>
-        <el-table-column v-if="!item.slot" v-bind="item" :key="item.prop"></el-table-column>
+        <el-table-column
+          v-if="!item.slot"
+          v-bind="item"
+          :key="item.prop"
+          :show-overflow-tooltip="true"
+        ></el-table-column>
       </template>
     </el-table>
 
