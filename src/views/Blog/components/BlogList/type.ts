@@ -1,7 +1,7 @@
 import { blogStateEnum } from "/@/enums/blogEnum";
 
 export interface IBlogList {
-  blogId: number | string;
+  blogId: string;
   blogTitle: string;
   blogAbstract: string;
   blogBanner: string;

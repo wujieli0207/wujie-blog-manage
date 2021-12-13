@@ -20,13 +20,20 @@
           :preview-src-list="[scope.data.blogBanner]"
         />
       </template>
-      <!-- #handle="scope" -->
-      <template>
-        <el-button type="text">编辑属性</el-button>
-        <el-button type="text">编辑文章</el-button>
-        <el-button type="text" class="red">删除</el-button>
+      <template #handle="scope">
+        <el-button type="text" @click="handleBlog(scope.data.blogId, 'editProp')"
+          >编辑属性</el-button
+        >
+        <el-button type="text" @click="handleBlog(scope.data.blogId, 'editArticle')"
+          >编辑文章</el-button
+        >
+        <el-button type="text" class="red" @click="handleBlog(scope.data.blogId, 'delete')"
+          >删除</el-button
+        >
       </template>
     </basic-table>
+    <!-- TODO -->
+    <edit-blog />
   </div>
 </template>
 
@@ -35,27 +42,58 @@
   import { defineComponent, onMounted } from "vue";
   import useState from "./hooks/useState";
   import BasicTable from "/@/components/BasicTable/index.vue";
+  import EditBlog from "./components/EditBlog/Index.vue";
   export default defineComponent({
     name: "BlogList",
     components: {
       BasicTable,
+      EditBlog,
     },
     setup: () => {
       const { columns, blogList } = useState();
 
       onMounted(() => {
         loadBlogList();
+        console.log("blogList: ", blogList.value);
       });
 
+      /**
+       * @description 加载博客列表
+       */
       const loadBlogList = () => {
         axios.get("/api/blog/getBlogList").then((res) => {
           blogList.value = res.data.data.blogList;
         });
       };
 
+      /**
+       * @description 操作博客数据
+       */
+      const handleBlog = (blogId: string, action: "editProp" | "editArticle" | "delete") => {
+        if (action === "editProp") {
+          console.log("action: ", action);
+          // axios.post("/api/blog/deleteBlog").then((res) => {
+          //   blogList.value = res.data.data.blogList;
+          // });
+        }
+        if (action === "editArticle") {
+          console.log("action: ", action);
+          // axios.post("/api/blog/deleteBlog").then((res) => {
+          //   blogList.value = res.data.data.blogList;
+          // });
+        }
+        if (action === "delete") {
+          axios.post("/api/blog/deleteBlog", { blogId: blogId }).then((res) => {
+            console.log("res.data: ", res.data.data);
+            blogList.value = res.data.data.blogList;
+          });
+        }
+      };
+
       return {
         columns,
         blogList,
+        handleBlog,
       };
     },
   });
