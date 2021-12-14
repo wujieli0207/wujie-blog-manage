@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { IBlogList } from "../type";
+import { IBlogProp } from "../type";
 import { IBasicColumnProp } from "/@/components/basicTable/type";
 
 const useState = () => {
@@ -51,7 +51,15 @@ const useState = () => {
     },
   ];
 
-  const blogList = ref<IBlogList[]>([]);
-  return { columns, blogList };
+  // 博客列表
+  const blogList = ref<IBlogProp[]>([]);
+
+  // 是否展示编辑框
+  const editVisible = ref(false);
+
+  // 已选中的博客Id
+  const selectedBlogId = ref("");
+
+  return { columns, blogList, editVisible, selectedBlogId };
 };
 export default useState;

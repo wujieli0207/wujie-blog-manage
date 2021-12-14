@@ -33,13 +33,16 @@
       </template>
     </basic-table>
     <!-- TODO -->
-    <edit-blog />
+    <el-dialog v-model="editVisible">
+      <edit-blog :blog-id="selectedBlogId" />
+    </el-dialog>
   </div>
 </template>
 
 <script lang="ts">
   import axios from "axios";
   import { defineComponent, onMounted } from "vue";
+  import { ElMessage, ElMessageBox } from "element-plus";
   import useState from "./hooks/useState";
   import BasicTable from "/@/components/BasicTable/index.vue";
   import EditBlog from "./components/EditBlog/Index.vue";
@@ -50,18 +53,17 @@
       EditBlog,
     },
     setup: () => {
-      const { columns, blogList } = useState();
+      const { columns, blogList, editVisible, selectedBlogId } = useState();
 
       onMounted(() => {
         loadBlogList();
-        console.log("blogList: ", blogList.value);
       });
 
       /**
        * @description 加载博客列表
        */
       const loadBlogList = () => {
-        axios.get("/api/blog/getBlogList").then((res) => {
+        axios.post("/api/blog/getBlogList").then((res) => {
           blogList.value = res.data.data.blogList;
         });
       };
@@ -71,10 +73,8 @@
        */
       const handleBlog = (blogId: string, action: "editProp" | "editArticle" | "delete") => {
         if (action === "editProp") {
-          console.log("action: ", action);
-          // axios.post("/api/blog/deleteBlog").then((res) => {
-          //   blogList.value = res.data.data.blogList;
-          // });
+          editVisible.value = true;
+          selectedBlogId.value = blogId;
         }
         if (action === "editArticle") {
           console.log("action: ", action);
@@ -83,16 +83,26 @@
           // });
         }
         if (action === "delete") {
-          axios.post("/api/blog/deleteBlog", { blogId: blogId }).then((res) => {
-            console.log("res.data: ", res.data.data);
-            blogList.value = res.data.data.blogList;
-          });
+          ElMessageBox.confirm("确定是否要删除吗？", "提示", {
+            type: "warning",
+          })
+            .then(() => {
+              axios.post("/api/blog/deleteBlog", { blogId: blogId }).then((res) => {
+                blogList.value = res.data.data.blogList;
+                ElMessage.success("删除成功");
+              });
+            })
+            .catch(() => {
+              ElMessage.success("删除失败，请联系管理员！");
+            });
         }
       };
 
       return {
         columns,
         blogList,
+        editVisible,
+        selectedBlogId,
         handleBlog,
       };
     },

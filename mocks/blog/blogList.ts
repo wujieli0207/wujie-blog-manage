@@ -19,11 +19,20 @@ for (let i = 0; i < blogListNum; i++) {
 export default [
   {
     url: "/api/blog/getBlogList",
-    method: "get",
-    response: () => {
+    method: "post",
+    response: ({ body }) => {
+      let returnBlogList = blogList;
+      if (body) {
+        returnBlogList = blogList.find((blog: any) => {
+          return blog.blogId === body.blogId;
+        });
+      }
+
       return {
         code: 1, // 1-查询成功
-        data: { blogList },
+        data: {
+          blogList: returnBlogList,
+        },
       };
     },
   },
