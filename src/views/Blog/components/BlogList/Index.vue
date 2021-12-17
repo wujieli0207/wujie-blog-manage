@@ -32,9 +32,8 @@
         >
       </template>
     </basic-table>
-    <!-- TODO -->
     <el-dialog v-model="editVisible">
-      <edit-blog :blog-id="selectedBlogId" />
+      <edit-blog :blog-id="selectedBlogId" v-model:editVisible="editVisible" />
     </el-dialog>
   </div>
 </template>

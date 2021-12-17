@@ -1,5 +1,5 @@
 import { reactive } from "vue";
-import type { IBasicColumnProp } from "/@/components/BasicTable/type";
+import type { IBasicColumnProp } from "../../../../../components/BasicTable/type";
 
 const useState = () => {
   const columns: IBasicColumnProp[] = reactive([

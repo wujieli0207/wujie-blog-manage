@@ -4,7 +4,7 @@
       <web-form :form-field="formField" v-model="form" />
     </div>
     <div class="edit-blog_btn">
-      <el-button type="primary">提交</el-button>
+      <el-button type="primary" @click="submitBlogForm">提交</el-button>
       <el-button type="primary">取消</el-button>
     </div>
   </div>
@@ -26,8 +26,12 @@
         type: String,
         required: true,
       },
+      editVisible: {
+        type: Boolean,
+        required: true,
+      },
     },
-    setup: (props) => {
+    setup: (props, context) => {
       const { form } = useState();
       const { formField } = useFormField();
 
@@ -35,17 +39,29 @@
         loadBlogForm(props.blogId);
       });
 
+      /**
+       * @description 加载表单信息
+       */
       const loadBlogForm = (blogId: string) => {
-        console.log("blogId: ", blogId);
         axios.post("/api/blog/getBlogList", { blogId: blogId }).then((res) => {
           form.value = res.data.data.blogList;
-          console.log("form.value: ", form.value);
+        });
+      };
+
+      /**
+       * @description 提交博客编辑信息
+       */
+      const submitBlogForm = (): void => {
+        axios.post("/api/blog/submitBlogForm", { blogForm: form.value }).then((res: any) => {
+          console.log("res: ", res);
+          context.emit("update:editVisible", false);
         });
       };
 
       return {
         form,
         formField,
+        submitBlogForm,
       };
     },
   });

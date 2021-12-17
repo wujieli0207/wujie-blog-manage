@@ -1,6 +1,6 @@
 import { ref } from "vue";
 import { IBlogProp } from "../../../type";
-import { blogStateEnum } from "/@/enums/blogEnum";
+import { EBlogState } from "/@/enums/blogEnum";
 
 const useState = () => {
   const form = ref<IBlogProp>({
@@ -8,7 +8,7 @@ const useState = () => {
     blogTitle: "",
     blogAbstract: "",
     blogBanner: "",
-    blogState: blogStateEnum.edit,
+    blogState: EBlogState.edit,
   });
   return { form };
 };

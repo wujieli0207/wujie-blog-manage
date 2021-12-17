@@ -6,7 +6,7 @@ import axios, {
 } from "axios";
 import { ElMessage } from "element-plus";
 import { IResponseData } from "./types";
-import { EResponseCode, EhttpCode } from "../../enums/httpEnum";
+import { EResponseCode, EHttpCode } from "../../enums/httpEnum";
 
 let service: AxiosInstance;
 
@@ -38,7 +38,7 @@ service.interceptors.request.use(
 // response 响应拦截配置
 service.interceptors.response.use(
   (res: AxiosResponse) => {
-    if (res.data === EhttpCode.ok) {
+    if (res.data === EHttpCode.ok) {
       const data: IResponseData = res.data;
 
       if (data.code === EResponseCode.success) {

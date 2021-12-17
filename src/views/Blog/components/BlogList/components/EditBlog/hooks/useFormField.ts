@@ -1,35 +1,39 @@
 import { IWebFormField } from "/@/components/WebForm/type";
+import { EFormType } from "/@/enums/componentEnum";
 
 const useFormField = () => {
   const formField: IWebFormField[] = [
     {
       value: "blogId",
       label: "博客编号",
-      type: "input",
+      type: EFormType.INPUT,
       require: false,
+      other: {
+        disabled: true,
+      },
     },
     {
       value: "blogTitle",
       label: "博客标题",
-      type: "input",
+      type: EFormType.INPUT,
       require: true,
     },
     {
       value: "blogAbstract",
       label: "博客摘要",
-      type: "textarea",
+      type: EFormType.TEXTAREA,
       require: true,
     },
     {
       value: "blogBanner",
       label: "博客封面",
-      type: "textarea",
+      type: EFormType.UPLOAD,
       require: true,
     },
     {
       value: "blogState",
       label: "博客状态",
-      type: "radio",
+      type: EFormType.RADIO,
       require: true,
       selectValue: "value",
       selectLabel: "label",

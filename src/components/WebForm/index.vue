@@ -13,7 +13,7 @@
         }"
       >
         <!-- 输入框、富文本编辑 -->
-        <template v-if="['input', 'textarea'].includes(item.type)">
+        <template v-if="[EFormType.INPUT, EFormType.TEXTAREA].includes(item.type)">
           <el-input
             :type="item.type"
             v-bind="item.other"
@@ -22,7 +22,7 @@
           ></el-input>
         </template>
         <!-- 下拉选择 -->
-        <template v-if="item.type === 'select'">
+        <template v-if="item.type === EFormType.SELECT">
           <el-select v-model="form[item.value]" placeholder v-bind="item.other">
             <template v-for="(op, index) in item.options" :key="index">
               <el-option
@@ -35,7 +35,7 @@
           </el-select>
         </template>
         <!-- 单选框 -->
-        <template v-if="item.type === 'radio'">
+        <template v-if="item.type === EFormType.RADIO">
           <el-radio-group v-model="form[item.value]" v-bind="item.other">
             <template v-for="(op, index) in item.options" :key="index">
               <el-radio
@@ -49,7 +49,7 @@
           </el-radio-group>
         </template>
         <!-- 复选框 -->
-        <template v-if="item.type === 'checkbox'">
+        <template v-if="item.type === EFormType.CHECKBOX">
           <el-checkbox-group v-model="form[item.value]" v-bind="item.other">
             <template v-for="(op, index) in item.options" :key="index">
               <el-checkbox
@@ -63,11 +63,19 @@
           </el-checkbox-group>
         </template>
         <!-- switch 选择 -->
-        <template v-if="item.type === 'switch'">
+        <template v-if="item.type === EFormType.SWITCH">
           <el-switch v-model="form[item.value]" v-bind="item.other" />
         </template>
-        <template v-if="item.type === 'date'">
+        <template v-if="item.type === EFormType.DATE">
           <el-date-picker v-model="form[item.value]" v-bind="item.other"></el-date-picker>
+        </template>
+        <!-- 自定义插槽 -->
+        <template v-if="item.type === EFormType.UPLOAD">
+          <web-upload
+            v-model="form[item.value]"
+            :image-url="form[item.value]"
+            v-bind="item.other"
+          />
         </template>
       </el-form-item>
     </el-form>
@@ -76,10 +84,15 @@
 
 <script lang="ts">
   import { defineComponent, PropType, computed, watch } from "vue";
+  import WebUpload from "./components/WebUpload/Index.vue";
   import useState from "./hooks/useState";
   import type { IWebFormField } from "./type";
+  import { EFormType } from "/@/enums/componentEnum";
   export default defineComponent({
     name: "WebForm",
+    components: {
+      WebUpload,
+    },
     props: {
       labelWidth: {
         type: String,
@@ -109,6 +122,7 @@
       );
 
       return {
+        EFormType,
         webFormRef,
         form,
       };

@@ -48,4 +48,18 @@ export default [
       };
     },
   },
+  {
+    url: "/api/blog/submitBlogForm",
+    method: "post",
+    response: ({ body }) => {
+      blogList.splice(body.blogForm.blogId, 1);
+      blogList.push(body.blogForm);
+
+      return {
+        code: 1, // 1-删除成功
+        data: { blogList },
+        body,
+      };
+    },
+  },
 ] as MockMethod[];

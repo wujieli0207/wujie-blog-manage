@@ -40,8 +40,8 @@
 
 <script lang="ts">
   import { defineComponent, PropType } from "vue";
-  import { IBasicColumnProp } from "./type";
   import Pagination from "/@/components/BasicPagination/index.vue";
+  import { IBasicColumnProp } from "./type";
 
   export default defineComponent({
     name: "BasicTable",
