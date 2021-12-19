@@ -3,6 +3,9 @@
     <div class="edit-blog__form">
       <web-form :form-field="formField" v-model="form" />
     </div>
+    <div class="edit-blog__article-md">
+      <markdown v-model:value="form.mdArticle" />
+    </div>
     <div class="edit-blog_btn">
       <el-button type="primary" @click="submitBlogForm">提交</el-button>
       <el-button type="primary">取消</el-button>
@@ -16,10 +19,12 @@
   import WebForm from "/@/components/WebForm/index.vue";
   import useState from "./hooks/useState";
   import useFormField from "./hooks/useFormField";
+  import { Markdown } from "/@/components/Markdown";
   export default defineComponent({
     name: "EditBlog",
     components: {
       WebForm,
+      Markdown,
     },
     props: {
       blogId: {
@@ -45,6 +50,7 @@
       const loadBlogForm = (blogId: string) => {
         axios.post("/api/blog/getBlogList", { blogId: blogId }).then((res) => {
           form.value = res.data.data.blogList;
+          console.log("form.value: ", form.value);
         });
       };
 

@@ -40,6 +40,17 @@ const menuList = [
       },
     ],
   },
+  {
+    index: "5",
+    title: "编辑器示例",
+    icon: "el:file-edit",
+    secondItem: [
+      {
+        index: "/markdownEditor",
+        title: "markdown 编辑器",
+      },
+    ],
+  },
 ];
 
 export default [

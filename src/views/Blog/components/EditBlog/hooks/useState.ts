@@ -9,6 +9,8 @@ const useState = () => {
     blogAbstract: "",
     blogBanner: "",
     blogState: EBlogState.edit,
+    mdArticle: "",
+    htmlArticle: "",
   });
   return { form };
 };

@@ -28,4 +28,12 @@ module.exports = {
     // 命名必须为多个单词
     "vue/multi-word-component-names": "off",
   },
+  overrides: [
+    {
+      files: ["*.vue"],
+      rules: {
+        "no-undef": "off",
+      },
+    },
+  ],
 };

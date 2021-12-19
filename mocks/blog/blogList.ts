@@ -12,6 +12,11 @@ for (let i = 0; i < blogListNum; i++) {
       blogAbstract: "@cword(100)",
       blogBanner: Mock.Random.image("800x600"),
       blogState: "已发布",
+      mdArticle: `# 标题
+
+      ## 二级标题
+      `,
+      htmlArticle: "",
     })
   );
 }

@@ -38,6 +38,14 @@ const routes: RouteRecordRaw[] = [
           title: "个人中心",
         },
       },
+      {
+        path: "/markdownEditor",
+        name: "markdownEditor",
+        component: () => import("/@/views/Demo/Editor/Markdown/Index.vue"),
+        meta: {
+          title: "Markdown 编辑器 Demo",
+        },
+      },
     ],
   },
 ];

@@ -21,12 +21,7 @@
         />
       </template>
       <template #handle="scope">
-        <el-button type="text" @click="handleBlog(scope.data.blogId, 'editProp')"
-          >编辑属性</el-button
-        >
-        <el-button type="text" @click="handleBlog(scope.data.blogId, 'editArticle')"
-          >编辑文章</el-button
-        >
+        <el-button type="text" @click="handleBlog(scope.data.blogId, 'editBLog')">编辑</el-button>
         <el-button type="text" class="red" @click="handleBlog(scope.data.blogId, 'delete')"
           >删除</el-button
         >
@@ -44,7 +39,7 @@
   import { ElMessage, ElMessageBox } from "element-plus";
   import useState from "./hooks/useState";
   import BasicTable from "/@/components/BasicTable/index.vue";
-  import EditBlog from "./components/EditBlog/Index.vue";
+  import EditBlog from "../EditBlog/Index.vue";
   export default defineComponent({
     name: "BlogList",
     components: {
@@ -70,16 +65,10 @@
       /**
        * @description 操作博客数据
        */
-      const handleBlog = (blogId: string, action: "editProp" | "editArticle" | "delete") => {
-        if (action === "editProp") {
+      const handleBlog = (blogId: string, action: "editBLog" | "delete") => {
+        if (action === "editBLog") {
           editVisible.value = true;
           selectedBlogId.value = blogId;
-        }
-        if (action === "editArticle") {
-          console.log("action: ", action);
-          // axios.post("/api/blog/deleteBlog").then((res) => {
-          //   blogList.value = res.data.data.blogList;
-          // });
         }
         if (action === "delete") {
           ElMessageBox.confirm("确定是否要删除吗？", "提示", {

@@ -6,4 +6,6 @@ export interface IBlogProp {
   blogAbstract: string;
   blogBanner: string;
   blogState: EBlogState;
+  mdArticle: string;
+  htmlArticle: string;
 }
