@@ -1,4 +1,4 @@
-import { IBasicOption } from "/@/types/formTypes";
+import { IBasicOption } from "/@/global/formTypes";
 import { EFormType } from "/@/enums/componentEnum";
 
 // Web 端表单字段参数配置

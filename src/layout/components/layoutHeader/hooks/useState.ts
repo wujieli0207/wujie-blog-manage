@@ -1,5 +1,5 @@
 import { reactive } from "vue";
-import { userInfo } from "/@/types/userTypes";
+import { userInfo } from "/@/global/userTypes";
 
 const useState = () => {
   const userInfo = reactive<userInfo>({
