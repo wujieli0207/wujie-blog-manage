@@ -2,14 +2,7 @@
   <div class="blog-list">
     <basic-table :columns="columns" :data="blogList" :allow-select="true" :show-paging="true">
       <template #blogState="scope">
-        <el-tag
-          :type="
-            scope.data.blogState === '已发布'
-              ? 'success'
-              : scope.date.blogState === '未发布'
-              ? 'danger'
-              : ''
-          "
+        <el-tag :type="scope.data.blogState === '已发布' ? 'success' : 'info'"
           >{{ scope.data.blogState }}
         </el-tag>
       </template>
@@ -22,13 +15,14 @@
       </template>
       <template #handle="scope">
         <el-button type="text" @click="handleBlog(scope.data.blogId, 'editBLog')">编辑</el-button>
+        <el-button type="text" @click="handleBlog(scope.data.blogId, 'editBLog')">预览</el-button>
         <el-button type="text" class="red" @click="handleBlog(scope.data.blogId, 'delete')"
           >删除</el-button
         >
       </template>
     </basic-table>
     <el-dialog v-model="editVisible">
-      <edit-blog :blog-id="selectedBlogId" v-model:editVisible="editVisible" />
+      <edit-blog :blog-id="selectedBlogId" v-model:visible="editVisible" />
     </el-dialog>
   </div>
 </template>
@@ -58,7 +52,9 @@
        */
       const loadBlogList = () => {
         axios.post("/api/blog/getBlogList").then((res) => {
+          console.log("res.data.data.blogList: ", res.data.data.blogList);
           blogList.value = res.data.data.blogList;
+          console.log("blogList.value: ", blogList.value);
         });
       };
 

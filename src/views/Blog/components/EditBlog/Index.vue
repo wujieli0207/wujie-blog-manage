@@ -1,15 +1,14 @@
 <template>
-  <div class="edit-blog">
-    <div class="edit-blog__form">
-      <web-form :form-field="formField" v-model="form" />
-    </div>
-    <div class="edit-blog__article-md">
-      <markdown v-model:value="form.mdArticle" />
-    </div>
-    <div class="edit-blog_btn">
-      <el-button type="primary" @click="submitBlogForm">提交</el-button>
-      <el-button type="primary">取消</el-button>
-    </div>
+  <div>
+    <web-form :form-field="formField" v-model="form" />
+  </div>
+  <div>
+    <el-button type="primary">预览博客</el-button>
+    <markdown v-model:value="form.mdArticle" />
+  </div>
+  <div class="pl-0 pr-4 pt-4">
+    <el-button type="primary" @click="submitBlogForm">提交</el-button>
+    <el-button type="primary">取消</el-button>
   </div>
 </template>
 
@@ -29,9 +28,8 @@
     props: {
       blogId: {
         type: String,
-        required: true,
       },
-      editVisible: {
+      visible: {
         type: Boolean,
         required: true,
       },
@@ -41,7 +39,9 @@
       const { formField } = useFormField();
 
       onMounted(() => {
-        loadBlogForm(props.blogId);
+        if (props.blogId) {
+          loadBlogForm(props.blogId);
+        }
       });
 
       /**
@@ -60,7 +60,7 @@
       const submitBlogForm = (): void => {
         axios.post("/api/blog/submitBlogForm", { blogForm: form.value }).then((res: any) => {
           console.log("res: ", res);
-          context.emit("update:editVisible", false);
+          context.emit("update:visible", false);
         });
       };
 

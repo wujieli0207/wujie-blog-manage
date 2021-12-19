@@ -11,11 +11,8 @@ for (let i = 0; i < blogListNum; i++) {
       blogTitle: "@ctitle(15)",
       blogAbstract: "@cword(100)",
       blogBanner: Mock.Random.image("800x600"),
-      blogState: "已发布",
-      mdArticle: `# 标题
-
-      ## 二级标题
-      `,
+      blogState: "未发布",
+      mdArticle: ``,
       htmlArticle: "",
     })
   );
@@ -57,7 +54,11 @@ export default [
     url: "/api/blog/submitBlogForm",
     method: "post",
     response: ({ body }) => {
-      blogList.splice(body.blogForm.blogId, 1);
+      if (body.blogForm.blogId) {
+        blogList.splice(body.blogForm.blogId, 1);
+      } else {
+        body.blogForm.blogId = blogList.length;
+      }
       blogList.push(body.blogForm);
 
       return {
