@@ -30,7 +30,8 @@
 <script lang="ts">
   import axios from "axios";
   import { defineComponent, onMounted } from "vue";
-  import { ElMessage, ElMessageBox } from "element-plus";
+  import { ElMessageBox } from "element-plus";
+  import useMessage from "/@/hooks/elementPlus/useMessage";
   import useState from "./hooks/useState";
   import BasicTable from "/@/components/BasicTable/index.vue";
   import EditBlog from "../EditBlog/Index.vue";
@@ -43,6 +44,8 @@
     setup: () => {
       const { columns, blogList, editVisible, selectedBlogId } = useState();
 
+      const message = useMessage();
+
       onMounted(() => {
         loadBlogList();
       });
@@ -51,10 +54,10 @@
        * @description 加载博客列表
        */
       const loadBlogList = () => {
-        axios.post("/api/blog/getBlogList").then((res) => {
-          console.log("res.data.data.blogList: ", res.data.data.blogList);
-          blogList.value = res.data.data.blogList;
-          console.log("blogList.value: ", blogList.value);
+        axios.get("/api/blog/findAll").then((res) => {
+          if (res.data.code === 0) {
+            blogList.value = res.data.data.list;
+          }
         });
       };
 
@@ -67,17 +70,19 @@
           selectedBlogId.value = blogId;
         }
         if (action === "delete") {
-          ElMessageBox.confirm("确定是否要删除吗？", "提示", {
+          ElMessageBox.confirm("确定是否要删除吗？", "warning", {
+            confirmButtonText: "OK",
+            cancelButtonText: "Cancel",
             type: "warning",
           })
             .then(() => {
-              axios.post("/api/blog/deleteBlog", { blogId: blogId }).then((res) => {
-                blogList.value = res.data.data.blogList;
-                ElMessage.success("删除成功");
+              axios.post(`/api/blog/remove/${blogId}`).then((res) => {
+                loadBlogList();
+                message.success("删除成功");
               });
             })
             .catch(() => {
-              ElMessage.success("删除失败，请联系管理员！");
+              message.success("删除失败，请联系管理员！");
             });
         }
       };

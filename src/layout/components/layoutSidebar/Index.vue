@@ -86,9 +86,72 @@
        * @description 加载侧边菜单栏
        */
       const loadSidebar = (): void => {
-        axios.get("/api/menu/getMenuList").then((res) => {
-          sidebarItems.value = res.data.data.menuList;
-        });
+        // axios.get("/api/menu/getMenuList").then((res) => {
+        //   sidebarItems.value = res.data.data.menuList;
+        // });
+
+        sidebarItems.value = [
+          {
+            icon: "ant-design:home-outlined",
+            index: "/home",
+            title: "系统首页",
+          },
+          {
+            icon: "ic:outline-article",
+            index: "/blog",
+            title: "博客管理",
+          },
+          {
+            icon: "iconoir:profile-circled",
+            index: "/personalCenter",
+            title: "个人中心",
+          },
+          {
+            index: "system",
+            title: "系统管理",
+            secondItem: [
+              {
+                index: "/dictManage",
+                title: "字典管理",
+              },
+            ],
+          },
+          {
+            index: "4",
+            title: "一级菜单示例",
+            secondItem: [
+              {
+                index: "4.1",
+                title: "二级菜单",
+              },
+              {
+                index: "4.2",
+                title: "三级菜单示例",
+                thirdItem: [
+                  {
+                    index: "4.2.1",
+                    title: "三级菜单1",
+                  },
+                  {
+                    index: "4.2.2",
+                    title: "三级菜单2",
+                  },
+                ],
+              },
+            ],
+          },
+          {
+            index: "5",
+            title: "编辑器示例",
+            icon: "el:file-edit",
+            secondItem: [
+              {
+                index: "/markdownEditor",
+                title: "markdown 编辑器",
+              },
+            ],
+          },
+        ];
       };
       return {
         avatar,

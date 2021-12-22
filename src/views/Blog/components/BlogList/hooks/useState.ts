@@ -1,5 +1,5 @@
 import { ref } from "vue";
-import { IBasicColumnProp } from "../../../../../components/BasicTable/type";
+import { IBasicColumnProp } from "/@/components/BasicTable/type";
 import { IBlogProp } from "../../../type";
 
 const useState = () => {

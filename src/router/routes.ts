@@ -39,6 +39,14 @@ const routes: RouteRecordRaw[] = [
         },
       },
       {
+        path: "/dictManage",
+        name: "dictManage",
+        component: () => import("/@/views/System/DictManage/Index.vue"),
+        meta: {
+          title: "字典管理",
+        },
+      },
+      {
         path: "/markdownEditor",
         name: "markdownEditor",
         component: () => import("/@/views/Demo/Editor/Markdown/Index.vue"),

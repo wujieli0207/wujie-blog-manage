@@ -19,11 +19,13 @@
     props: {
       pagination: {
         type: Object,
-        default: () => ({
-          page: 1,
-          pageSize: 10,
-          total: 100,
-        }),
+        default: () => {
+          return {
+            page: 1,
+            pageSize: 10,
+            total: 100,
+          };
+        },
       },
       layout: {
         type: String,

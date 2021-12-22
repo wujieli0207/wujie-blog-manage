@@ -48,9 +48,11 @@
        * @description 加载表单信息
        */
       const loadBlogForm = (blogId: string) => {
-        axios.post("/api/blog/getBlogList", { blogId: blogId }).then((res) => {
-          form.value = res.data.data.blogList;
-          console.log("form.value: ", form.value);
+        axios.get(`/api/blog/findOne/${blogId}`).then((res) => {
+          console.log("res.data.data: ", res.data.data);
+          if (res.data.code === 0) {
+            form.value = res.data.data;
+          }
         });
       };
 
@@ -58,7 +60,7 @@
        * @description 提交博客编辑信息
        */
       const submitBlogForm = (): void => {
-        axios.post("/api/blog/submitBlogForm", { blogForm: form.value }).then((res: any) => {
+        axios.post("/api/blog/create", { blogForm: form.value }).then((res: any) => {
           console.log("res: ", res);
           context.emit("update:visible", false);
         });

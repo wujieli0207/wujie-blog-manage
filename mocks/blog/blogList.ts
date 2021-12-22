@@ -20,8 +20,8 @@ for (let i = 0; i < blogListNum; i++) {
 
 export default [
   {
-    url: "/api/blog/getBlogList",
-    method: "post",
+    url: "/api/blog/findAll",
+    method: "get",
     response: ({ body }) => {
       let returnBlogList = blogList;
       if (body) {
