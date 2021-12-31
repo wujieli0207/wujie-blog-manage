@@ -1,13 +1,10 @@
 <template>
   <div class="header">
     <div class="header_left">
-      <!-- 折叠按钮 -->
-      <div
-        class="header__left-collapse"
-        @click="appStore.handleCollapse(!appStore.sidebarCollapse)"
-      >
-        <Icon class="collapse" v-if="!appStore.sidebarCollapse" icon="line-md:menu-fold-left" />
-        <Icon class="collapse" v-if="appStore.sidebarCollapse" icon="line-md:menu-fold-right" />
+      <!-- TODO 折叠按钮 功能待完善  -->
+      <div class="header__left-collapse" @click="appStore.handleCollapse(!appStore.isShowSidebar)">
+        <Icon class="collapse" v-if="!appStore.isShowSidebar" icon="line-md:menu-fold-left" />
+        <Icon class="collapse" v-if="appStore.isShowSidebar" icon="line-md:menu-fold-right" />
       </div>
     </div>
     <div class="header__right">

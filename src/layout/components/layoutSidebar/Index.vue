@@ -6,7 +6,7 @@
       <div class="sidebar__logo-name">博客管理后台</div>
     </div>
     <!-- 侧边菜单栏 -->
-    <el-menu :collapse="appStore.sidebarCollapse" :router="true">
+    <el-menu :collapse="appStore.isShowSidebar" :router="true">
       <!-- 支持一级菜单栏 -->
       <template v-for="item in sidebarItems" :key="item.index">
         <!-- 不包含二级菜单 -->
