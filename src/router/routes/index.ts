@@ -1,6 +1,16 @@
-import { kill } from "process";
-import { AppRouteRecordRaw } from "../types";
+import { AppRouteRecordRaw } from "/@/router/types";
+import { REDIRECT_ROUTE } from "/@/router/routes/basic";
 import { PageEnum } from "/@/enums/pageEnum";
+
+const modules = import.meta.globEager("./modules/**/*.ts");
+
+const routeModuleList: AppRouteRecordRaw[] = [];
+
+Object.keys(modules).forEach((key) => {
+  const mod = modules[key].default || {};
+  const modList = Array.isArray(mod) ? [...mod] : [mod];
+  routeModuleList.push(...modList);
+});
 
 export const RootRoute: AppRouteRecordRaw = {
   path: "/",
@@ -20,4 +30,4 @@ export const LoginRoute: AppRouteRecordRaw = {
   },
 };
 
-export const basicRoutes = [RootRoute, LoginRoute];
+export const basicRoutes = [RootRoute, LoginRoute, REDIRECT_ROUTE];
