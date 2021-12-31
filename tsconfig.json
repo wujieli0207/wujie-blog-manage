@@ -8,6 +8,7 @@
       "sourceMap": true,
       "resolveJsonModule": true,
       "esModuleInterop": true,
+      "skipLibCheck": true,
       "lib": ["esnext", "dom"],
       "baseUrl": ".",
       "paths": {
@@ -15,5 +16,21 @@
       },
       "suppressImplicitAnyIndexErrors": true
     },
-    "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.tsx", "src/**/*.vue", "types/index.d.ts", "types/global.d.ts"]
+    "include": [
+      "src/**/*.ts",
+      "src/**/*.d.ts",
+      "src/**/*.tsx",
+      "src/**/*.vue",
+      "types/**/*.d.ts",
+      "types/**/*.ts",
+      "build/**/*.d.ts",
+      "build/**/*.ts",
+      "mock/**/*.ts",
+      "vite.config.ts"
+, "src/router/routes.ts.bak"    ],
+    "exclude": [
+      "node_modules",
+      "dist",
+      "**/*.js"
+    ]
   }
