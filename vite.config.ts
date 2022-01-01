@@ -12,6 +12,7 @@ const pathResolve = (dir: string): any => {
 
 const alias: Record<string, string> = {
   "/@": pathResolve("src"),
+  "/#": pathResolve("types"),
 };
 
 export default ({ command, mode }: ConfigEnv): UserConfigExport => {

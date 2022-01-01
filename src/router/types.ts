@@ -1,5 +1,6 @@
 import { defineComponent } from "vue";
 import { RouteMeta, RouteRecordRaw } from "vue-router";
+import { RoleEnum } from "/@/enums/roleEnum";
 
 export type Component<T = any> =
   | ReturnType<typeof defineComponent>
@@ -14,4 +15,24 @@ export interface AppRouteRecordRaw extends Omit<RouteRecordRaw, "meta" | "childr
   children?: AppRouteRecordRaw[] | undefined;
   props?: Recordable;
   fullPath?: string;
+}
+
+export interface IMenu {
+  name: string;
+  path: string;
+  icon?: string;
+  paramPath?: string;
+  disabled?: boolean;
+  children?: IMenu[];
+  orderNo?: number;
+  roles?: RoleEnum[];
+  meta?: Partial<RouteMeta>;
+  tag?: IMenuTag;
+  hideMenu?: boolean;
+}
+
+export interface IMenuTag {
+  type?: "primary" | "error" | "warn" | "success";
+  content?: string;
+  dot?: boolean;
 }

@@ -1,5 +1,6 @@
 import { ref } from "vue";
 import { defineStore } from "pinia";
+import { store } from "/@/store";
 
 export const useAppStore = defineStore("app", () => {
   const isShowSidebar = ref(false);
@@ -13,3 +14,7 @@ export const useAppStore = defineStore("app", () => {
     handleCollapse,
   };
 });
+
+export function useAppStoreWithOut() {
+  return useAppStore(store);
+}
