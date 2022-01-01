@@ -1,8 +1,9 @@
-<template>layoutIndex</template>
+<template>
+  <a-layout>
+    <a-layout> <layout-content /></a-layout>
+  </a-layout>
+</template>
 
-<script lang="ts">
-  import { defineComponent } from "vue";
-  export default defineComponent({
-    name: "index",
-  });
+<script lang="ts" setup>
+  import LayoutContent from "./content/index.vue";
 </script>

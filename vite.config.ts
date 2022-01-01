@@ -1,7 +1,7 @@
 import { UserConfigExport, ConfigEnv } from "vite";
 import vue from "@vitejs/plugin-vue";
 import Components from "unplugin-vue-components/vite";
-import { ElementPlusResolver } from "unplugin-vue-components/resolvers";
+import { ElementPlusResolver, AntDesignVueResolver } from "unplugin-vue-components/resolvers";
 import { viteMockServe } from "vite-plugin-mock";
 
 import { resolve } from "path";
@@ -19,7 +19,7 @@ export default ({ command, mode }: ConfigEnv): UserConfigExport => {
     plugins: [
       vue(),
       Components({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [ElementPlusResolver(), AntDesignVueResolver()],
       }),
       // viteMockServe({
       //   mockPath: "mocks",

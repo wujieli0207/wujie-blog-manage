@@ -12,6 +12,8 @@ Object.keys(modules).forEach((key) => {
   routeModuleList.push(...modList);
 });
 
+export const asyncRoutes = [...routeModuleList];
+
 export const RootRoute: AppRouteRecordRaw = {
   path: "/",
   name: "Root",
@@ -29,5 +31,13 @@ export const LoginRoute: AppRouteRecordRaw = {
     title: "登录",
   },
 };
+export const layoutRoute: AppRouteRecordRaw = {
+  path: "/layout",
+  name: "Layout",
+  component: () => import("/@/layouts/default/index.vue"),
+  meta: {
+    title: "test",
+  },
+};
 
-export const basicRoutes = [RootRoute, LoginRoute, REDIRECT_ROUTE];
+export const basicRoutes = [RootRoute, LoginRoute, layoutRoute, REDIRECT_ROUTE];

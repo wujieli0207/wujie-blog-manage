@@ -16,6 +16,7 @@
   "license": "MIT",
   "dependencies": {
     "@iconify/iconify": "^2.1.0",
+    "ant-design-vue": "^2.2.8",
     "axios": "^0.24.0",
     "echarts": "^5.2.2",
     "element-plus": "^1.2.0-beta.3",
