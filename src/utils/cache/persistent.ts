@@ -25,9 +25,10 @@ interface IBasicStore {
   [MULTIPLE_TABS_KEY]: RouteLocationNormalized[];
 }
 
-type LocalStore = IBasicStore;
-type SessionStore = IBasicStore;
+export type LocalStore = IBasicStore;
+export type SessionStore = IBasicStore;
 
+export type BasicKeys = keyof IBasicStore;
 type LocalKeys = keyof LocalStore;
 type SessionKeys = keyof SessionStore;
 
