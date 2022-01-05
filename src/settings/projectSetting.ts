@@ -1,8 +1,10 @@
 import { PermissionModeEnum } from "/@/enums/appEnum";
-import { ProjectConfig } from "/#/config";
+import { IProjectConfig } from "/#/config";
+import { CacheTypeEnum } from "/@/enums/cacheEnum";
 
-const setting: ProjectConfig = {
+const projectSetting: IProjectConfig = {
+  permissionCachetype: CacheTypeEnum.LOCAL,
   permissionMode: PermissionModeEnum.ROUTE_MAPPING,
 };
 
-export default setting;
+export default projectSetting;
