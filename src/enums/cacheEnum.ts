@@ -13,6 +13,8 @@ export const PROJ_CFG_KEY = "PROJ__CFG__KEY__";
 
 export const MULTIPLE_TABS_KEY = "MULTIPLE__TABS__KEY__";
 
+export const APP_DARK_MODE_KEY = "APP_DARK__MODE__KEY__";
+
 export const APP_LOCAL_CACHE_KEY = "COMMON__LOCAL__CACHE__";
 
 export const APP_SESSION_CACHE_KEY = "COMMON__SSESSION__CACHE__";
