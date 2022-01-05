@@ -35,7 +35,7 @@ export class AesEncryption {
 
   encryptByAES(cipherText: string) {
     if (this.key) {
-      return encrypt(cipherText, this.key, this.getOptions).toString;
+      return encrypt(cipherText, this.key, this.getOptions).toString();
     }
   }
 
